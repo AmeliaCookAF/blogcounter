@@ -1,0 +1,2 @@
+module BlogcountsHelper
+end

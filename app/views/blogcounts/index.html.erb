@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Blogcounts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Wordcount</th>
+      <th>Paragraphs</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blogcounts.each do |blogcount| %>
+      <tr>
+        <td><%= blogcount.title %></td>
+        <td><%= blogcount.wordcount %></td>
+        <td><%= blogcount.paragraphs %></td>
+        <td><%= link_to 'Show', blogcount %></td>
+        <td><%= link_to 'Edit', edit_blogcount_path(blogcount) %></td>
+        <td><%= link_to 'Destroy', blogcount, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Blogcount', new_blogcount_path %>

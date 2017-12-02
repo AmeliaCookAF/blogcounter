@@ -1,0 +1,32 @@
+<%= form_with(model: blogcount, local: true) do |form| %>
+  <% if blogcount.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(blogcount.errors.count, "error") %> prohibited this blogcount from being saved:</h2>
+
+      <ul>
+      <% blogcount.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :blogcount_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wordcount %>
+    <%= form.number_field :wordcount, id: :blogcount_wordcount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :paragraphs %>
+    <%= form.text_area :paragraphs, id: :blogcount_paragraphs %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
