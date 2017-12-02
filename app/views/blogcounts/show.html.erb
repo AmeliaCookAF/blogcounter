@@ -10,6 +10,8 @@
   <%= @blogcount.wordcount %>
 </p>
 
+<%= form_with(local: true) do |form| %>
+
  <table class="table table-bordered">
    <tr>
      <th>Idea</th>
@@ -17,11 +19,13 @@
    </tr>
     <% calculateParagraphs(@blogcount.paragraphs).each do |paragraph| %>
     <tr>
-      <td><%= paragraph %></td>
+      <td><%= form.text_field :paragraph_title, :value => paragraph["idea"] %></td>
       <td><%= calculateWordcount(calculateParagraphs(@blogcount.paragraphs), @blogcount.wordcount) %></td>
     </tr>
     <% end %>
  </table>
+
+ <% end %>
 
 <%= link_to 'Edit', edit_blogcount_path(@blogcount) %> |
 <%= link_to 'Back', blogcounts_path %>

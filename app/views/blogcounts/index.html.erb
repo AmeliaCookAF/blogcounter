@@ -2,25 +2,22 @@
 
 <h1>Blogcounts</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Title</th>
-      <th>Wordcount</th>
-      <th>Paragraphs</th>
-      <th colspan="3"></th>
+      <th>Options</th>
     </tr>
   </thead>
 
   <tbody>
     <% @blogcounts.each do |blogcount| %>
       <tr>
-        <td><%= blogcount.title %></td>
-        <td><%= blogcount.wordcount %></td>
-        <td><%= blogcount.paragraphs %></td>
-        <td><%= link_to 'Show', blogcount %></td>
-        <td><%= link_to 'Edit', edit_blogcount_path(blogcount) %></td>
-        <td><%= link_to 'Destroy', blogcount, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to blogcount.title, blogcount %></td>
+
+        <td>
+        <%= link_to 'Edit', edit_blogcount_path(blogcount) %>
+        <%= link_to 'Delete', blogcount, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Blogcount', new_blogcount_path %>
+<%= link_to 'New Blog', new_blogcount_path %>

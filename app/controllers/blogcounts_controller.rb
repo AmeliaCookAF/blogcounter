@@ -1,6 +1,6 @@
 class BlogcountsController < ApplicationController
   before_action :set_blogcount, only: [:show, :edit, :update, :destroy]
-  helper_method :calculateParagraphs, :calculateWordcount
+  helper_method :calculateParagraphs, :calculateWordcount, :checkParagraph
   # GET /blogcounts
   # GET /blogcounts.json
   def index
@@ -14,7 +14,7 @@ class BlogcountsController < ApplicationController
 
   # GET /blogcounts/new
   def new
-    @blogcount = Blogcount.new
+    @blogcount = Blogcount.new(title: 'New Blog', wordcount: 1200, paragraphs: '[{"idea":"Introduction","notes":""},{"idea":"Body 1","notes":""},{"idea":"Body 2","notes":""},{"idea":"Body 3","notes":""},{"idea":"Conclusion","notes":""}]')
   end
 
   # GET /blogcounts/1/edit
@@ -24,6 +24,9 @@ class BlogcountsController < ApplicationController
   # POST /blogcounts
   # POST /blogcounts.json
   def create
+
+    puts blogcount_params
+
     @blogcount = Blogcount.new(blogcount_params)
 
     respond_to do |format|
@@ -62,12 +65,17 @@ class BlogcountsController < ApplicationController
   end
 
   def calculateParagraphs(paragraphs)
-    paragraphList = paragraphs.split("\n")
+    paragraphList = JSON.parse(paragraphs)
     return paragraphList
   end
 
   def calculateWordcount(paragraphList, wordcount)
     return wordcount / paragraphList.count
+  end
+
+  def checkParagraph(paragraphs)
+    puts paragraphs
+    return paragraphs
   end
 
   private
